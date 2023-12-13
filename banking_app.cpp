@@ -6,7 +6,7 @@ void checkBalance();
 
 
 int main() {
-    
+    depositMoney();
     return 0;
 }
 
