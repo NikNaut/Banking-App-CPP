@@ -20,18 +20,28 @@ int main() {
             double amount;
             std::cout << "Insert amount: ";
             std::cin >> amount;
-            std::cout << "Deposited $" << depositMoney(amount) << "\n";
+            if (amount <= 0) {
+                std::cout << "Amount cannot be 0 or negative.\n";
+            }
+            else {
+                std::cout << "Deposited $" << depositMoney(amount) << "\n";
+            }
         }
         
         else if (function == "WITHDRAW") {
             double amount;
             std::cout << "Insert amount: ";
             std::cin >> amount;
-            if (money - amount < 0) {
-                std::cout << "Insufficient balance\n";
+            if (amount <= 0) {
+                std::cout << "Amount cannot be 0 or negative.\n";
             }
             else {
-                std::cout << "$" << withdrawMoney(amount) << " withdrawn\n";
+                if (amount > money) {
+                    std::cout << "Insufficient balance\n";
+                }
+                else {
+                    std::cout << "$" << withdrawMoney(amount) << " withdrawn\n";
+                }
             }
         }
 
