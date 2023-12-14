@@ -1,15 +1,73 @@
 #include <iostream>
+#include <algorithm>
+#include <cctype>
 
-void depositMoney(double amount);
-void withdrawMoney(double amount);
-void checkBalance();
+double depositMoney(double amount);
+double withdrawMoney(double amount);
+double checkBalance();
+double money = 0;
 
 
 int main() {
-    depositMoney();
+    std::cout << "Welcome to Banking App\n";
+    while (true) {
+        std::string function;
+        std::cout << "Please enter a function(deposit | withdraw | balance): ";
+        std::cin >> function;
+        std::transform(function.begin(), function.end(), function.begin(), ::toupper);
+        
+        if (function == "DEPOSIT") {
+            double amount;
+            std::cout << "Insert amount: ";
+            std::cin >> amount;
+            std::cout << "Deposited $" << depositMoney(amount) << "\n";
+        }
+        
+        else if (function == "WITHDRAW") {
+            double amount;
+            std::cout << "Insert amount: ";
+            std::cin >> amount;
+            if (money - amount < 0) {
+                std::cout << "Insufficient balance\n";
+            }
+            else {
+                std::cout << "$" << withdrawMoney(amount) << " withdrawn\n";
+            }
+        }
+
+        else if (function == "BALANCE") {
+            std::cout << "Your balance is $" << checkBalance() << "\n";
+        }
+        
+        else if (function == "QUIT") {
+            break;
+        }
+        
+        else {
+            std::cout << "Please enter a valid response\n";
+        }
+        
+    }
+    
     return 0;
 }
 
-void depositMoney(double amount) {
-    std::cout<<"from deposit money";
+double depositMoney(double amount) {
+    money += amount;
+    return money;
 }
+
+double withdrawMoney(double amount) {
+    money -= amount;
+    return amount;
+}
+
+double checkBalance() {
+    return money;
+}
+
+
+
+
+
+
