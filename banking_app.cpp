@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <cctype>
+#include <iomanip>
 
 double depositMoney(double amount);
 double withdrawMoney(double amount);
@@ -46,7 +47,7 @@ int main() {
         }
 
         else if (function == "BALANCE") {
-            std::cout << "Your balance is $" << checkBalance() << "\n";
+            std::cout << "Your balance is $" << std::setprecision(2) << std::fixed << checkBalance() << "\n";
         }
         
         else if (function == "QUIT") {
